@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:money_tracking/controller/home_controller.dart';
 import 'package:money_tracking/pages/home/home_page.dart';
@@ -23,18 +22,32 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: Messages.app_title,
             theme: ThemeData(
+              /*colorScheme: const ColorScheme(
+                  brightness: Brightness.light,
+                  primary: Colors.green,
+                  onPrimary: Colors.greenAccent,
+                  secondary: Colors.blue,
+                  onSecondary: Colors.blueAccent,
+                  error: Colors.red,
+                  onError: Colors.redAccent,
+                  background: Colors.white,
+                  onBackground: Colors.white54,
+                  surface: Colors.white,
+                  onSurface: Colors.white
+              ),*/
               textTheme: const TextTheme(
-                  headline1:
+                  displayLarge:
                       TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-                  headline6:
+                  titleLarge:
                       TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-                  bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hindi')),
+                  bodyMedium: TextStyle(fontSize: 14.0, fontFamily: 'Hindi')
+              ),
               primarySwatch: Colors.green,
               brightness: HomeController.instance.isDarkTheme
                   ? Brightness.dark
                   : Brightness.light,
             ),
-            initialRoute: '/home',
+            initialRoute: '/',
             routes: {
               '/': (context) => const HomePage()
             },

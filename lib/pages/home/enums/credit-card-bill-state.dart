@@ -1,0 +1,1 @@
+enum CreditCardBillState { Aberta, Fechada }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:money_tracking/pages/home/widget/accounts_resum.dart';
-import 'package:money_tracking/pages/home/widget/page_view.dart';
+import 'package:money_tracking/pages/home/widget/bottom_bar.dart';
+import 'package:money_tracking/pages/home/widget/credit-card-page-view.dart';
+import 'package:money_tracking/pages/home/widget/mov_page_view.dart';
 import 'package:money_tracking/pages/home/widget/page_view_dots.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,19 +13,21 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
-  late int _currentIndex;
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  int _creditCardCurrentIndex = 0;
+  int _movCardCurrentIndex = 0;
+  bool existemCartoes = true;
 
-  @override
+ /* @override
   void initState() {
     super.initState();
-    _currentIndex = 0;
-  }
+    _movCardCurrentIndex = 0;
+    _creditCardCurrentIndex = 0;
+  }*/
 
   @override
   Widget build(BuildContext context) {
-    double screenHeigth = MediaQuery.of(context).size.height;
-
     return Scaffold(
       //drawer: const CustomDrawer(),
       /*appBar: AppBar(
@@ -36,84 +41,72 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.all(15),
         children: [
-          AccountsResum(),
+          const AccountsResum(),
           SizedBox(
             height: 150,
-            child: CustomPageView(onChanged: (index) {
+            child: MovementsPageView(onChanged: (index) {
               setState(() {
-                _currentIndex = index;
+                _movCardCurrentIndex = index;
               });
             }),
           ),
-          PageViewDots(currentIndex: _currentIndex)
+          PageViewDots(currentIndex: _movCardCurrentIndex),
+          existemCartoes
+          ? SizedBox(
+            height: 320,
+            child: CreditCardPageView(
+              onChanged: (index) {
+                setState(() {
+                  _creditCardCurrentIndex = index;
+                });
+              },
+            ),
+          ) : const SizedBox.shrink(),
+          existemCartoes ? PageViewDots(currentIndex: _creditCardCurrentIndex) : const SizedBox.shrink(),
+          // SizedBox(
+          //   height: 200,
+          //   child: Column(
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //       Text("Balanco Mensal", style: GoogleFonts.baiJamjuree(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue),),
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text("Receitas", style: GoogleFonts.baiJamjuree(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black45),),
+          //           Text("200.000", style: GoogleFonts.notoSans(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.green),),
+          //         ],
+          //       ),
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text("Despesas", style: GoogleFonts.baiJamjuree(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black45),),
+          //           Text("100.000", style: GoogleFonts.notoSans(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red),),
+          //         ],
+          //       ),
+          //       Container(
+          //         color: Colors.black26,
+          //         height: 1,
+          //         width: MediaQuery.of(context).size.width,
+          //       ),
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text("Balance", style: GoogleFonts.baiJamjuree(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black45),),
+          //           Text("100.000", style: GoogleFonts.notoSans(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.green),),
+          //         ],
+          //       ),
+          //     ],
+          //   ),
+          // )
         ],
-      )
-      /*SingleChildScrollView(
-        padding: const EdgeInsets.all(15),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                  padding: const EdgeInsetsDirectional.only(top: 0),
-                  child: Text(Messages.balance_available,
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.montserrat(fontSize: 14))),
-              Padding(
-                  padding: const EdgeInsetsDirectional.only(top: 5),
-                  child: Text(
-                    FormatHelper.formatarMoeda(valor: 35000000),
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.robotoMono(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black54),
-                  )),
-              Padding(
-                padding: const EdgeInsets.only(top: 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // max 19 digitos
-                    FlowCard(
-                        titulo: Messages.income,
-                        receita: true,
-                        valor: 10000000),
-                    FlowCard(
-                        titulo: Messages.spent,
-                        receita: false,
-                        valor: 10000000),
-                  ],
-                ),
-              ),
-              Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        Messages.pending_movements,
-                        style: GoogleFonts.baiJamjuree(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black45),
-                      ),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            PendingMovement(),
-                            PendingMovement(),
-                          ],
-                        ),
-                      )
-                    ],
-                  ))
-            ],
-          ),
-        ),
-      ),*/
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.green,
+        child: const Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: const BottomBar(),
     );
   }
 }

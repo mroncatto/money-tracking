@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PageViewDots extends StatelessWidget {
@@ -8,7 +7,7 @@ class PageViewDots extends StatelessWidget {
     return index == currentIndex ? Colors.green : Colors.greenAccent;
   }
 
-  const PageViewDots({Key? key, required this.currentIndex}) : super(key: key);
+  const PageViewDots({super.key, required this.currentIndex});
 
   @override
   Widget build(BuildContext context) {

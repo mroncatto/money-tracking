@@ -14,6 +14,7 @@ class PendingMovement extends StatelessWidget {
       required this.valor,
       required this.movCount});
 
+
   @override
   Widget build(BuildContext context) {
     return Container(

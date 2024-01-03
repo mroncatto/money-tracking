@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:money_tracking/pages/home/widget/card_view.dart';
 import 'package:money_tracking/pages/home/widget/pending_mov_card.dart';
 
-class CustomPageView extends StatelessWidget {
+class MovementsPageView extends StatelessWidget {
   final ValueChanged<int> onChanged;
 
-  const CustomPageView({Key? key, required this.onChanged}) : super(key: key);
+  const MovementsPageView({super.key, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
