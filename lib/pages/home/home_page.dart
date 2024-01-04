@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:money_tracking/pages/home/widget/accounts_resum.dart';
 import 'package:money_tracking/pages/home/widget/bottom_bar.dart';
 import 'package:money_tracking/pages/home/widget/credit-card-page-view.dart';
+import 'package:money_tracking/pages/home/widget/month_balance.dart';
 import 'package:money_tracking/pages/home/widget/mov_page_view.dart';
-import 'package:money_tracking/pages/home/widget/page_view_dots.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -37,6 +36,7 @@ class _HomePageState extends State<HomePage>
         ),
         centerTitle: true,
       ),*/
+      backgroundColor: Colors.white,
       body: ListView(
         physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.all(15),
@@ -50,7 +50,10 @@ class _HomePageState extends State<HomePage>
               });
             }),
           ),
-          PageViewDots(currentIndex: _movCardCurrentIndex),
+          const SizedBox(
+            height: 20,
+          ),
+          //PageViewDots(currentIndex: _movCardCurrentIndex, itens: 2),
           existemCartoes
           ? SizedBox(
             height: 320,
@@ -62,47 +65,20 @@ class _HomePageState extends State<HomePage>
               },
             ),
           ) : const SizedBox.shrink(),
-          existemCartoes ? PageViewDots(currentIndex: _creditCardCurrentIndex) : const SizedBox.shrink(),
-          // SizedBox(
-          //   height: 200,
-          //   child: Column(
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: [
-          //       Text("Balanco Mensal", style: GoogleFonts.baiJamjuree(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue),),
-          //       Row(
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           Text("Receitas", style: GoogleFonts.baiJamjuree(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black45),),
-          //           Text("200.000", style: GoogleFonts.notoSans(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.green),),
-          //         ],
-          //       ),
-          //       Row(
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           Text("Despesas", style: GoogleFonts.baiJamjuree(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black45),),
-          //           Text("100.000", style: GoogleFonts.notoSans(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red),),
-          //         ],
-          //       ),
-          //       Container(
-          //         color: Colors.black26,
-          //         height: 1,
-          //         width: MediaQuery.of(context).size.width,
-          //       ),
-          //       Row(
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           Text("Balance", style: GoogleFonts.baiJamjuree(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black45),),
-          //           Text("100.000", style: GoogleFonts.notoSans(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.green),),
-          //         ],
-          //       ),
-          //     ],
-          //   ),
-          // )
+          //PageViewDots(currentIndex: _creditCardCurrentIndex, itens: 2),
+          const SizedBox(
+            height: 20,
+          ),
+          const SizedBox(
+            height: 200,
+            child: MonthBalance(),
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: Colors.green,
+        shape: const CircleBorder(),
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

@@ -10,7 +10,7 @@ class AccountsResum extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 15, bottom: 15),
+      padding: const EdgeInsets.only(top: 20, bottom: 15),
       //decoration: BoxDecoration(border: Border.all(color: Colors.red)),
       child: Column(
         children: [
@@ -18,7 +18,7 @@ class AccountsResum extends StatelessWidget {
               padding: const EdgeInsetsDirectional.only(top: 5),
               child: Text(Messages.balance_available,
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.montserrat(fontSize: 14))),
+                  style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black45))),
           Padding(
               padding: const EdgeInsetsDirectional.only(top: 5),
               child: Text(
@@ -27,7 +27,7 @@ class AccountsResum extends StatelessWidget {
                 style: GoogleFonts.robotoMono(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
-                    color: Colors.deepPurpleAccent),
+                    color: Colors.teal),
               )),
           Padding(
             padding: const EdgeInsets.only(top: 5),

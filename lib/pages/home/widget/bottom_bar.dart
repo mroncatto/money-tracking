@@ -9,15 +9,13 @@ class BottomBar extends StatelessWidget {
       shape: const CircularNotchedRectangle(),
       notchMargin: 6.0,
       color: Colors.transparent,
+      height: 50,
       elevation: 9.0,
       clipBehavior: Clip.antiAlias,
+      padding: EdgeInsets.zero,
       child: Container(
         height: 50.0,
-        decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25.0),
-                topRight: Radius.circular(25.0)),
-            color: Colors.white),
+        decoration: const BoxDecoration(color: Colors.white),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
