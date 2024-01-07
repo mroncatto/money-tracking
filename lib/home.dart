@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:money_tracking/commons/enums/tipo_movimento.dart';
+import 'package:money_tracking/commons/enums/tipo_movimento_caixa.dart';
 import 'package:money_tracking/pages/home/dashboard.dart';
 import 'package:money_tracking/pages/movimentos/movimento_page.dart';
+import 'package:money_tracking/pages/movimentos/novo_movimento.dart';
+import 'package:money_tracking/widget/action-button.dart';
+import 'package:money_tracking/widget/expandable_fab.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,6 +16,33 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _indicePagina = 0;
+
+  void _abrirNovaDespesa() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const NovoMovimento(
+                tipoMovimento: TipoMovimento.Saida,
+                tipoMovCaixa: TipoMovCaixa.Gastos)));
+  }
+
+  void _abrirNovaReceita() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const NovoMovimento(
+                tipoMovimento: TipoMovimento.Entrada,
+                tipoMovCaixa: TipoMovCaixa.Receitas)));
+  }
+
+  void _abrirNovaTransferencia() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const NovoMovimento(
+                tipoMovimento: TipoMovimento.Saida,
+                tipoMovCaixa: TipoMovCaixa.Transacoes)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,18 +104,26 @@ class _HomeState extends State<Home> {
               icon: Icon(Icons.settings))*/
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            if(_indicePagina == 0) {
-
-            }
-          },
-          backgroundColor: Colors.green,
-          shape: const CircleBorder(),
-          foregroundColor: Colors.white,
-          child: const Icon(Icons.add),
+        floatingActionButton: ExpandableFab(
+          distance: 112,
+          children: [
+            ActionButton(
+              onPressed: () => _abrirNovaDespesa(),
+              icon: const Icon(Icons.keyboard_arrow_down_outlined),
+              color: Colors.red,
+            ),
+            ActionButton(
+              onPressed: () => _abrirNovaReceita(),
+              icon: const Icon(Icons.keyboard_arrow_up_outlined),
+              color: Colors.green,
+            ),
+            ActionButton(
+              onPressed: () => _abrirNovaTransferencia(),
+              icon: const Icon(Icons.move_up_outlined),
+              color: Colors.blue,
+            ),
+          ],
         ),
-        floatingActionButtonLocation:
-            FloatingActionButtonLocation.centerDocked);
+    );
   }
 }

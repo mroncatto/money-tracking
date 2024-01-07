@@ -18,15 +18,15 @@ class MonthBalance extends StatelessWidget {
   Widget build(BuildContext context) {
     List<BalanceSeries> data = [
       BalanceSeries(
-          stage: Messages.spent,
-          percent: totalGasto.toInt(),
-          barColor: charts.ColorUtil.fromDartColor(Colors.red),
-          color: Colors.red),
-      BalanceSeries(
           stage: Messages.income,
           percent: totalReceita.toInt(),
           barColor: charts.ColorUtil.fromDartColor(Colors.green),
-          color: Colors.green)
+          color: Colors.green),
+      BalanceSeries(
+          stage: Messages.spent,
+          percent: totalGasto.toInt(),
+          barColor: charts.ColorUtil.fromDartColor(Colors.red),
+          color: Colors.red)
     ];
 
     double _balance() {
