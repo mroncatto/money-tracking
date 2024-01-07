@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:money_tracking/model/credit_card.dart';
+import 'package:money_tracking/commons/enums/cartao_bandeira.dart';
+import 'package:money_tracking/model/cartao_credito.dart';
 import 'package:money_tracking/pages/home/widget/credit_card_card.dart';
-import 'package:money_tracking/pages/home/widget/page_view_dots.dart';
 
 import 'card_view.dart';
 
@@ -12,9 +12,9 @@ class CreditCardPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<CreditCard> _cartoes = [];
-    _cartoes.add(CreditCard("VISA", "Itau", "5336", 10000000, "G\$"));
-    _cartoes.add(CreditCard("Master Card", "Itau", "8264", 1700000, "G\$"));
+    List<CartaoCredito> _cartoes = [];
+    _cartoes.add(CartaoCredito(CartaoBandeira.Visa, "Itau", "5336", 10000000, "G\$"));
+    _cartoes.add(CartaoCredito(CartaoBandeira.MasterCard, "Itau", "8264", 1700000, "G\$"));
 
     return PageView.builder(
         physics: const BouncingScrollPhysics(),

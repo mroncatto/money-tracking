@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:money_tracking/pages/home/enums/credit-card-bill-state.dart';
-import 'package:money_tracking/util/formatHelper.dart';
+import 'package:money_tracking/util/format_helper.dart';
 import 'package:money_tracking/util/messages.dart';
+
+import '../../../commons/enums/credit-card-bill-state.dart';
 
 
 class CreditCardCard extends StatefulWidget {
@@ -30,7 +31,6 @@ class _CreditCardCardState extends State<CreditCardCard> {
   double _dividaTotalBar(double limite, double divida) {
     final double porcentaje = 1 - (divida / limite);
     const double altura = 200;
-    print(porcentaje);
     if(porcentaje > 1) return altura;
     if(porcentaje < 0) return 0;
     return altura * porcentaje;

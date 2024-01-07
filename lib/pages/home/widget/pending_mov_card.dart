@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:money_tracking/util/formatHelper.dart';
+import 'package:money_tracking/util/format_helper.dart';
 import 'package:money_tracking/util/messages.dart';
 
 class PendingMovement extends StatelessWidget {

@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:money_tracking/controller/home_controller.dart';
-import 'package:money_tracking/pages/home/home_page.dart';
+import 'package:money_tracking/home.dart';
 import 'package:money_tracking/util/messages.dart';
 
 void main() {
@@ -22,8 +23,10 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: Messages.app_title,
             theme: ThemeData(
-              /*colorScheme: const ColorScheme(
-                  brightness: Brightness.light,
+              /*colorScheme: ColorScheme(
+                  brightness: HomeController.instance.isDarkTheme
+                      ? Brightness.dark
+                      : Brightness.light,
                   primary: Colors.green,
                   onPrimary: Colors.greenAccent,
                   secondary: Colors.blue,
@@ -31,26 +34,32 @@ class MyApp extends StatelessWidget {
                   error: Colors.red,
                   onError: Colors.redAccent,
                   background: Colors.white,
-                  onBackground: Colors.white54,
+                  onBackground: Colors.white,
                   surface: Colors.white,
-                  onSurface: Colors.white
+                  onSurface: Colors.grey.shade800
               ),*/
               textTheme: const TextTheme(
                   displayLarge:
-                      TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+                  TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
                   titleLarge:
-                      TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+                  TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
                   bodyMedium: TextStyle(fontSize: 14.0, fontFamily: 'Hindi')
               ),
-              primarySwatch: Colors.green,
               brightness: HomeController.instance.isDarkTheme
-                  ? Brightness.dark
-                  : Brightness.light,
+                   ? Brightness.dark
+                   : Brightness.light,
             ),
-            initialRoute: '/',
-            routes: {
-              '/': (context) => const HomePage()
-            },
+            home: const Home(),
+            localizationsDelegates: const [
+              DefaultMaterialLocalizations.delegate,
+              DefaultWidgetsLocalizations.delegate,
+              DefaultCupertinoLocalizations.delegate
+            ],
+            /*supportedLocales: const [
+              Locale('en_US', ''),
+              Locale('es_PY', ''),
+              Locale('pt_BR', ''),
+            ],*/
           );
         });
   }
